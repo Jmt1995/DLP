@@ -30,9 +30,9 @@ Email: email address, \{email address\}@nju.edu.cn}}
 
 
 \maketitle
-%Since the read speeds of diverse storage devices are quite different, the unbalanced use on either specific type of storage or particular device would easily overload them, making them being hotspots and finally worsen the read performance for analytical tasks.
+%Since the read speeds of diverse storage devices are quite different, the unbalanced use on either specific type of storage or particular device would easily overload them, making them being hotspots and finally worsen the read performance for analytical tasks.ssss
 \begin{abstract}
-A trend in nowadays data centers is that equipped with SSD, HDD, etc., heterogeneous-storage devices are widely deployed to meet different demands of various big data workloads. Since the read speeds of diverse storage devices are quite different, the unbalanced use on either specific type of storage or particular device would easily elongate the latency on reading data, worsening the overall performance for analytical tasks. In this paper, we formulate Workload-Aware Scheduling problem for Heterogeneous-storage (WASH), as well as show its NP-hardness. To solve this proposed problem, we design a randomized algorithm (WASH-rdm) which chooses source devices based on delicate calculated probabilities and can be proved concentrated on its optimum with high probability through our theoretical analysis. Extensive experiments show that the WASH-rdm can reduce the reading time for tasks by up to 55\% over the state-of-the-art baseline algorithm.
+A trend in nowadays data centers is that equipped with SSD, HDD, etc., heterogeneous-storage devices are widely deployed to meet different demands of various big data workloads. Since the read speeds of diverse storage devices are quite different, the unbalanced use on either specific type of storage or particular device would easily elongate the latency on reading data, worsening the overall performance for analytical tasks. In this paper, we formulate Workload-Aware Scheduling problem for Heterogeneous-storage (WASH), as well as show its NP-hardness. To solve this proposed problem, we design a randomized algorithm (WASH-rdm) which chooses source devices based on delicate calculated probabilities and can be proved concentrated on its optimum with high probability through our theoretical analysis. Extensive experiments show that the WASH-rdm can reduce the reading time for tasks by up to 55\% over the state-of-the-art baseline algorithm. 
 
 \end{abstract}
 
@@ -43,11 +43,11 @@ big data analytics, heterogeneous-storage, workload-aware scheduling
 \section{Introduction}
 
 Nowadays, there are new trend that data centers have a variety of data analytical workloads, e.g., some data streaming applications like Storm
-\cite{b40} and other machine learning based applications like Grep \cite{b27}. The different workloads might have different requirements on storage performance \cite{b28} \cite{b29} \cite{b30} \cite{b31}. For example, Storm is a compute-intensive application whose computation relies significantly on the I/O performance while Grep is a I/O-intensive application which has a great throughput on I/O. In order to meet these demands, a lot of heterogeneous devices have been deployed in big data analytics frameworks, e.g., Hadoop \cite{b14} and Spark\cite{b15}.
+\cite{b40} and other machine learning based applications like Grep \cite{b27}. The different workloads might have different requirements on storage performance \cite{b28} \cite{b29} \cite{b30} \cite{b31}. For example, Storm is a compute-intensive application whose computation relies significantly on the I/O performance while Grep is a I/O-intensive application which has a great throughput. In order to meet these demands, a lot of heterogeneous devices have already been deployed in big data analytics frameworks, e.g., Hadoop \cite{b14} and Spark\cite{b15}.
 
-However, the heterogeneity of these devices would lead to the divergent read performance due to two aspects. Firstly, the different types of storage, e.g. SSD \cite{b32} and HDD \cite{b33}, have different read performance, naturally. For example, as shown in Fig.\ref{Fig:motivation} reading the same amount of data from HDD takes almost twice longer than SSD. Secondly, when there are a large number of tasks reading data concurrently from specific device, read performance is also affected. As further shown in Fig.\ref{Fig:motivation}, when the amount of tasks increases, the reading time for each task will also increase.
+However, the heterogeneity of these devices would lead to the divergent read performance due to two aspects. Firstly, the different types of storage, e.g. SSD \cite{b32} and HDD \cite{b33}, have naturally different read performance. As shown in Fig.\ref{Fig:motivation}, reading the same amount of data from HDD takes almost twice longer than SSD. Secondly, when there are a large number of tasks reading data concurrently from specific device, read performance is also affected. As further shown in Fig.\ref{Fig:motivation}, when the amount of tasks increases, the reading time for each task will also increase.
 
-Due to the different read performance, traditional scheduling may result in unbalanced usage on storage device. For example, when tasks fetch data from those disks with high-performance, they would spend less time on I/O, compared with those low-performance disk. Furthermore, the I/O queries containing too many data analytical tasks may easily overload the storage devices. As a result, disks with poor read performance or heavy workload would elongate the I/O performance of analytical tasks.
+Due to the different read performance, traditional task scheduling strategies may result in unbalanced usage on storage device. As a result, when tasks fetch data from those disks with high-performance, they would spend less time on I/O, compared with those low-performance disks. Furthermore, the I/O queries containing too many data analytical tasks may easily overload the storage devices, and those disks with poor read performance or heavy workload would also elongate the I/O performance of analytical tasks.
 
 \begin{figure}[!t]
 	\centering
@@ -58,54 +58,55 @@ Due to the different read performance, traditional scheduling may result in unba
 
 %However, due to the divergent read performance of different storage and the cumulative workload of the storage, its hard to hard to achieve this aim. 
  
-Thus, we propose to focus on dealing with unbalanced use of heterogeneous-storage devices in this paper. However, due to the multiple replicas of data, how to choose these feasible locations is a big challenge.
- Most of the researches focus on heterogeneous computing resources \cite{b25}\cite{b26}\cite{b35}\cite{b36}, ignoring the heterogeneous-storage devices. Although some works have already considered heterogeneous-storage \cite{b6}\cite{b7}, multiple types of storage are not considered. In contrast, we formulate the Workload-Aware Scheduling problem for Heterogeneous-storage as well as prove its NP-hardness. Afterwards, we propose a randomized algorithm (WASH-rdm) with guaranteed performance by carefully choosing source device based on delicate calculated probabilities.
+Thus, we propose to focus on dealing with unbalanced use of heterogeneous-storage devices in this paper. However, due to the multiple replicas of data, how to choose the feasible locations is a big challenge.
+Most of the researches focus on heterogeneous computing resources \cite{b25}\cite{b26}\cite{b35}\cite{b36}, ignoring the heterogeneous-storage devices. 
+Although some works have already studied heterogeneous-storage \cite{b6}\cite{b7}, multiple types of storage are not considered. In contrast, we formulate the Workload-Aware Scheduling problem for Heterogeneous-storage as well as show its NP-hardness. Afterwards, we propose a randomized algorithm (WASH-rdm) with guaranteed performance by carefully choosing the source device based on delicate calculated probabilities.
 %We focus on two aspects. One is the read performance of the disk itself, the other is the load of the disk, that is, the number of tasks that are reading the data from the disk. Focus on the above two points, we formulate it as an optimization problem and propose a heuristic algorithm (WASH-greedy) and a random algorithm (WASH-rdm) with guaranteed performance to solve the problem. %Experiments show that the performance of the proposed algorithm is 55\% better than the Storage-unaware scheduling mechanism. 
 More concretely, our contributions are as follows: 
 
 \begin{itemize}
 %\item We present the necessity of sloving this problem by showing impact of reading data phase during the task execution.
-\item To balance the workload on heterogeneous-storage device, we propose Workload-Aware Scheduling problem for Heterogeneous-storage (WASH) which is proved to be NP-hard. 
-\item We propose randomized algorithm with guaranteed-performance. The WASH-rdm algorithm can be proved concentrated around its optimum with high probability 1 - O($e^{-t^2}$) where $t$ is the concentration bound.
-\item The results of our extensive simulations show that the performance of our proposed WASH-rdm improves by up to 55\% over the art-of-the-state algorithms.
+\item To balance the workload on heterogeneous-storage device, we propose Workload-Aware Scheduling problem for Heterogeneous-storage (WASH) which can be proved as NP-hard. 
+\item We propose randomized algorithm with guaranteed-performance. The WASH-rdm algorithm can be proved concentrated around its optimum with high probability, i.e., 1 - O($e^{-t^2}$) where $t$ is the concentration bound.
+\item The results of our extensive simulations show that the performance of proposed WASH-rdm improves by up to 55\% over the art-of-the-state algorithms.
 %compared with the storage-unaware scheduling mechanism and by 20\% 
 \end{itemize}
 
-The rest of the paper is organized as follows. In Section \ref{RELATED_WORKS}, we present the related works of the WASH problem. Then we propose our system model and our algorithm in Section  \ref{SYSTEM_MODEL} and Section  \ref{DESIGN_ALGORITHM}. At last, we conclude this paper in Section \ref{CONCLUSION} by summarizing our main contributions.
+The rest of the paper is organized as follows. In Section \ref{RELATED_WORKS}, we present the related works of the WASH problem. Then we propose our system model and our algorithm in Section  \ref{SYSTEM_MODEL} and Section \ref{DESIGN_ALGORITHM}, respectively. At last, we conclude this paper in Section \ref{CONCLUSION} by summarizing our main contributions.
 
 
 \section{RELATED WORKS}\label{RELATED_WORKS}
 The related works consist of two parts. For the first part, due to limited link bandwidth, some works focus on data locality to improve data analytics performance. However, in heterogeneous environments, it is not enough to consider data locality alone. Thus, some other studies have been carried out to accelerate data analytical tasks by studying hardware heterogeneity \cite{b1}.
 
-Due to the limited network bandwidth resources in data center, while a large amount of data is transmitted between nodes before task execution, it will greatly affect the data analytics. Therefore, processing data locally as much as possible can improve performance, e.g., placing map task to the node which stores the input data. Matei et al. \cite{b2} proposes delay scheduling to assure data locality. Delay scheduling considers that when a node has idle slots, priority should be given to  the tasks whose input data is stored at that node, and delay to schedule tasks whose related data is not stored at that nodes. Ganesh \cite{b3} makes multiple replicas for high-frequency data by analyzing the access frequency of data, improving the data locality in this way. Cristina \cite{b4} proposes a distributed adaptive data replication algorithm DARE, which can help the scheduler show better data locality. Jalaparti \cite{b5} believes that most of the production work is repetitive and predictable, by which the scheduler could make scheduling plan ahead. Coordinating the tasks and data placement of these jobs can effectively reduce bandwidth usage, further, improving data locality. All of these work improves the performance of data analytics by improving data locality.
+\textbf{Data locality.} Due to the limited network bandwidth resources in data center, while a large amount of data is transmitted between nodes before task execution, it will greatly affect the data analytics. Therefore, processing data locally as much as possible can improve performance, e.g., placing map task to the node which stores the input data. Matei et al. \cite{b2} proposes delay scheduling to assure data locality. Delay scheduling considers that when a node has idle slots, priority should be given to  the tasks whose input data is stored at that node, and delay to schedule tasks whose related data is not stored at that nodes. Ganesh \cite{b3} makes multiple replicas for high-frequency data by analyzing the access frequency of data, improving the data locality in this way. Cristina \cite{b4} proposes a distributed adaptive data replication algorithm DARE, which can help the scheduler show better data locality. Jalaparti \cite{b5} believes that most of the production work is repetitive and predictable, by which the scheduler could make scheduling plan ahead. Coordinating the tasks and data placement of these jobs can effectively reduce bandwidth usage, further, improving data locality. All of these work improves the performance of data analytics by improving data locality.
 
-However, in heterogeneous data centers, due to the different performance of data storage devices, task reading time is often different. At present, some of the existing work is based on the research of storage heterogeneity, which accelerates the speed of data processing. Xu et \cite{b6} considers the current usability of underlying hardware (CPU, memory, I/O), but does not consider the performance differences of different storage hardware. 
-In Hadoop 2.8, HDFS\cite{b19} considers heterogeneous-storage and supports multiple storage strategies. One of the storage strategies is ONE\_SSD, that is, one replicas is stored in SSD, and the rest is stored in HDD. However, the task scheduling strategy is not aware of the disk's performance.
-Based on ONE\_SSD, Pan \cite{b7} proposes H-Scheduler which takes into account the performance between HDD and SSD. Facing the trend of increasing heterogeneous-storage, it is one-sided to divide the storage devices into two categories. Wang B \cite{b8} uses Markov model to describe the use of nodes in the cluster to deploy data reasonably. However, the scheduling problem of tasks is not considered, and the heterogeneity of different storage media is also not considered. These work does not accurately define the differences between storage hardwares, and there is still a situation where a large number of tasks read low-speed devices, causing bottlenecks.
+\textbf{Heterogeneous environments.} However, in heterogeneous data centers, due to the different performance of data storage devices, task reading time is often different. At present, some of the existing works are based on the research of storage heterogeneity, which accelerates the speed of data processing. Xu et \cite{b6} considers the current usability of underlying hardware (CPU, memory, I/O), but does not consider the performance of different storage hardware. 
+In Hadoop 2.8, HDFS\cite{b19} considers heterogeneous-storage and supports multiple storage strategies. One of the storage strategies is named ONE\_SSD, that is, one replicas is stored in SSD, and the rest is stored in HDD. However, the task scheduling strategy is not aware of the disk's performance.
+Based on ONE\_SSD, Pan \cite{b7} proposes H-Scheduler which takes into account the performance between HDD and SSD. However, with the increasing trend of heterogeneous-storage, it is one-sided to divide the storage devices into two categories. Wang B \cite{b8} uses Markov model to describe the use of nodes in the cluster to deploy data reasonably. However, the scheduling problem of reading tasks is not considered, and the heterogeneity of different storage media is not considered, either. These works do not accurately define the differences between storage hardwares, and there is still a situation where a large number of tasks read data from low-speed devices, causing bottlenecks.
 
-The difference between those tasks and ours is that our work specificly defines the difference in reading speed of disk. Then, the scheduler deploys tasks according to different reading speed of disk to avoid bottlenecks.
+The difference between those works and ours is that our work specificly defines the differences on reading performance among disks and the workloads of disks. Then, the reading tasks fetch data according to different reading performance and workloads of disks, to speed up data analytics.
 
 \section{SYSTEM MODEL AND PROBLEM FORMULATION}\label{SYSTEM_MODEL}
-In this section, we first introduce the background of heterogeneous-storage used on data analytics and then build the system model. After that, we formulate the Workload-Aware Scheduling problem and prove its NP-hardness. 
+In this section, we first introduce the background of heterogeneous-storage used on data analytics and then build the system model. After that, we formulate the Workload-Aware Scheduling problem and show its NP-hardness. 
 
 \subsection{Background and motivation}\label{AA}
 
-In data center, Hadoop and Spark wildly use heterogeneous-storage to support different workloads. For example, in MapReduce framework, Shuffle \cite{b42} \cite{b41} stage usually has a large requirement on I/O . In order to meet this demand, Crail \cite{b37}, which is a high-performance I/O architecture for data processing, use NVMeSSD as supplementary storage to speed up Shuffle.
+In data center, Hadoop and Spark wildly use heterogeneous storage to support different workloads. For example, in MapReduce framework, Shuffle \cite{b42} \cite{b41} stage usually has a large requirement on I/O . In order to meet this demand, Crail \cite{b37}, which is a high-performance I/O architecture for data processing, use NVMeSSD as a supplementary storage to speed up the Shuffle process.
 %with the number of heterogeneous disks increasing, traditional scheduling may lead to disk bottleneck. Before analysing the problem, we will introduce data and replicas as well as job and tasks first.
 
-\textbf{Data and replicas.} In data analytics system, large volume of data is generated, such as GPS information\cite{b38}, system logs\cite{b39}, etc. Due to their massive sizes, a large file is often divided into multiple fixed-size pieces, i.e., one $data$ block, stored in distributed file system such as HDFS\cite{b19}, whose uniform size is often 64MB or 128MB. However, the disk is usually unreliability, e.g., about 5 to 6 disks are damaged per day in a cluster of 5,000 machines \cite{b32}. In order to avoid data loss, traditional approach is to keep multiple $replicas$ of one data in storage, such as three backups across two racks. Then, one data will be stored in multiple disks with various I/O performance.
+\textbf{Data and replicas.} In data analytics system, large volume of data is generated, such as GPS information\cite{b38}, system logs\cite{b39}, etc. Due to their massive sizes, a large file is often divided into multiple fixed-size pieces, i.e., one $data$ block, stored in distributed file system such as HDFS\cite{b19}, whose uniform size is often 64MB or 128MB. However, the disk is usually unreliability, e.g., about 5 to 6 disks are damaged per day in a cluster of 5,000 machines \cite{b32}. In order to avoid data loss, traditional approach is to keep multiple $replicas$ of one data, such as three backups across two racks. Then, one data will be stored in multiple disks with various I/O performance \cite{b43}. 
 % The tasks will be scheduled to node to execute. ,
 
-\textbf{Job and tasks.} A data analytics workload, named a $job$, includes a lot of parallel $tasks$. Since each task must read its related input data before execution from the corresponding disk, the scheduler in data analytics system needs to decide the fetching source for each task among multiple replicas. Note that the completion of a job depends on the straggler task.
+\textbf{Job and tasks.} A data analytics workload, named a $job$, includes a lot of parallel $tasks$. Since each task must read its related input data before execution from the corresponding disk, the scheduler in data analytics system needs to decide the fetching source for each task among multiple replicas. 
 
 
-However, the traditional schedulers in data analytics is usually unaware of disks' types and workload, which often lead to straggler task. In contrast, our scheduler is then designed to avoid the straggler task by balancing workload of heterogeneous devices.
+However, the traditional schedulers in data analytics is usually unaware of disks' types and workload, which often leads to straggler task. Note that the completion of a job depends on the straggler task. In contrast, our scheduler is then designed to avoid the straggler task by balancing workload of heterogeneous devices.
 
 \textbf{Motivation and example.}
 %In order to improve the performance of data analytics tasks, tasks should read data from high performance and low load disks. 
-We will use an example to illustrate importances on choosing heterogeneous-storage. As shown in Fig.\ref{Fig:example}, there are two disks, i.e., SSD and HDD. The reading time of a replica from SSD and HDD is $T_1$ = 0.2 and $T_2$ = 0.4, respectively. 
+We will use an example to illustrate the importance on choosing heterogeneous storage. As shown in Fig.\ref{Fig:example}, there are two types of disks, i.e., SSD and HDD. The reading time of a replica from SSD and HDD is $T_1$ = 0.2 and $T_2$ = 0.4, respectively. 
 \begin{itemize}
-	\item A traditional scheduler may place tasks such as scheduling 1 of Fig.\ref{Fig:example}(a), and the reading time of scheduling 1 is $0.4s$ while the reading time of delicate method, i.e., scheduling 2, is $0.2s$. Obviously, the tasks that read data from SSD has a shorter reading time than those reading from HDD, i.e., scheduling 2 is better than scheduling 1. 
+	\item A traditional scheduler may deploy tasks like scheduling 1 of Fig.\ref{Fig:example}(a), and the reading time of scheduling 1 is $0.4s$ while the reading time of the delicate method, i.e., scheduling 2, is $0.2s$. Obviously, the task that reads data from SSD has a shorter reading time than those reading from HDD, i.e., scheduling 2 is better than scheduling 1. 
 	\item In Fig.\ref{Fig:example}(b), the reading time of scheduling 1 is $0.2s * 3 = 0.6s$ while the reading time of the delicate method, such as scheduling 2, is $max\{0.2s * 2, 0.4s\} = 0.4s$. Apparently, tasks that read from lower workload storage have a shorter reading time, i.e., scheduling 2 is also better than scheduling 1.
 \end{itemize}
 
@@ -344,18 +345,7 @@ In the previous subsection \ref{Heuristic}, we design a greedy heuristic algorit
 \paragraph{\textbf{Analysis of WASH-rdm Algorithm}}
 
 In this section, we will prove that our WASH-rdm can be proved concentrated on its optimum with high probability, i.e., 1- O($e^{-t^2}$). Firstly, we prove that the difference between reading time of disk-i contributed by any task-j and expectation is martingales sequence \cite{b12}. Secondly, Based on the martingales sequence, we use Azuma's Inequality to illustrate the bound between the feasible solution and the optimal solution.
-\begin{figure*}[!t]
-	\centering
-	\subfigure[Small Workload ]{\label{Fig:instance1}\includegraphics[height=1.6in]{fig_instance1_4.eps}}\quad\quad %quad 表示图像的间距
-	\subfigure[Medium Workload ]{\label{Fig:instance2}\includegraphics[height=1.6in]{fig_instance2_4.eps}}\quad\quad
-	\subfigure[Large Workload
-	]{\label{Fig:instance3}\includegraphics[height=1.6in]{fig_instance3_4.eps}}
-	\vspace{-1ex}
-	\caption{Comparison of WASH-rdm and other Algorithm on different Workloads. \ref{Fig:instance1} denotes the results on Small Workload which has about 500 tasks. \ref{Fig:instance2} denotes the results on Medium Workload which has about 2000 tasks.
-	\ref{Fig:instance3} denotes the results on Large Workload which has 5000 tasks. X-axis denotes the disk. Y-axis denotes the load of each disk after running the three algorithms.}
-	\label{Fig:instance}
-	\vspace{-1ex}
-\end{figure*}
+
 
 \emph{\textbf{Theorem 2:}} $Pr[SOL(\text{WASH-rdm}) - OPT(\text{WASH}) \leq t] \geq 1 - O(e^{-t^2})$.
 
@@ -457,16 +447,39 @@ Pr\{SOL(\text{WASH-rdm})<OPT (\text{WASH})+t\}\nonumber\\
 \geq 1 - O(e^{-t^2})\label{prove:result}
 \end{align}
 
-Observed from the (\ref{prove:result}), the feasible solution $SOL(\text{WASH-rdm})$ found by the algorithm and the optimal solution OPT (WASH) are approximated by probability $1 - O(e^{-t^2})$. When hundreds of tasks are deployed with $1 - O(e^{-t^2})$ = 0.85, the value of $t$ is acceptable, only a few millisecond.\hfill $\qedsymbol$
+Observed from the equation (\ref{prove:result}), the feasible solution, i.e., $SOL(\text{WASH-rdm})$ found by the WASH-rdm and the optimal, i.e., OPT (WASH) are approximated by probability $1 - O(e^{-t^2})$. When hundreds of tasks are deployed with $1 - O(e^{-t^2})$ = 0.85, the value of $t$ is acceptable, only a few millisecond.\hfill $\qedsymbol$
 
 \section{PERFORMANCE EVALUATION}\label{PERFORMANCE_EVALUATION}
 
-In this section, we make extensive simulations, comparing our algorithm, i.e., WASH-rdm, with WASH-rdm and storage-unaware scheduling algorithm. The results of simulations show that performance of our proposed WASH-rdm can improves by up to 55\% and 25\%, respectively.
+In this section, we make extensive simulations, comparing our algorithm, i.e., WASH-rdm, with WASH-rdm and storage-unaware scheduling algorithm. The results of simulations show that performance of our proposed WASH-rdm improves by up to 55\% and 25\%, respectively.
 \subsection{Simulation Settings}\label{SCM}
-Usually, the traditional scheduling mechanism are not aware of the types and workloads of the disks. Such as Hadoop, the scheduler selects source device that stores the related replica of tasks in random strategy, which we call Hadoop-default. In our extensive simulation, we compare our WASH-rdm with WASH-greedy and Hadoop-default.
+Usually, the traditional scheduling mechanism are not aware of the types and workloads of the disks. Such as Hadoop, the scheduler selects source devices that store the related data of tasks in random strategy, which we call Hadoop-default. In our extensive simulation, we compare our WASH-rdm with WASH-greedy and Hadoop-default.
 
 \textbf{Workload:} Referring to the characteristics of Google traces \cite{b20}, we classify workload into three categories: Small Workload, Medium Workload and Large Workload, as shown in TABLE \ref{tab:workload}. In Small Workload, most of the jobs have 1-150 tasks. In has Large Workload, there are 50\% of the jobs that has over 50 tasks. The Medium Workload is in the middle of them.
 
+\begin{figure*}[!t]
+	\centering
+	\subfigure[Small Workload ]{\label{Fig:instance1}\includegraphics[height=1.6in]{fig_instance1_6.eps}}\quad\quad %quad 表示图像的间距
+	\subfigure[Medium Workload ]{\label{Fig:instance2}\includegraphics[height=1.6in]{fig_instance2_6.eps}}\quad\quad
+	\subfigure[Large Workload
+	]{\label{Fig:instance3}\includegraphics[height=1.6in]{fig_instance3_6.eps}}
+	\vspace{-1ex}
+	\caption{Comparison of WASH-rdm and other Algorithm on different Workloads. \ref{Fig:instance1} represents the results on Small Workload which has about 500 tasks. \ref{Fig:instance2} represents the results on Medium Workload which has about 2000 tasks.
+	\ref{Fig:instance3} represents the results on Large Workload which has 5000 tasks. X-axis represents the disk. Y-axis represents the load of each disk after running the three algorithms.}
+	\label{Fig:instance}
+	\vspace{-1ex}
+\end{figure*}
+\begin{figure*}[!t]
+	\centering
+	\subfigure[Results under various setting on Workloads ]{\label{Fig:completeWorkload}\includegraphics[height=1.6in]{figcomplete1_5.eps}}\quad\quad %quad 表示图像的间距
+	\subfigure[Results under different Heterogeneity cluster. ]{\label{Fig:completeHeter}\includegraphics[height=1.6in]{figcomplete2_5.eps}}\quad\quad
+	\subfigure[Results under various setting on replicas number
+	]{\label{Fig:completeRep}\includegraphics[height=1.6in]{figcomplete3_5.eps}}
+	\vspace{-1ex}
+	\caption{Comparison of WASH-rdm and other Algorithm on different workloads, different heterogeneity cluster and different replica number $C$. \ref{Fig:completeWorkload} denotes effect of different workloads on reading time. \ref{Fig:completeHeter} denotes the reading time of the three algorithm on different Heterogeneity cluster. \ref{Fig:completeRep} denotes the reading time of the three algorithm when $C$ is different. Y-axis denotes the reading time of all tasks which has been normalized.}
+	\label{Fig:complete}
+	\vspace{-3ex}
+\end{figure*}
 \begin{table}[htbp]
 	\caption{THE DIFFERENT TRACES USED FOR EXPERIMENT}
 	\begin{center}
@@ -486,26 +499,25 @@ Usually, the traditional scheduling mechanism are not aware of the types and wor
 \end{table}
 
 \textbf{Setting:}
-In distributed file systems \cite{b19}, data is distributed uniformly on disk. Therefore, in this experimental environment, we uniformly deploy 200000 data with three data replicas by default, each data block size $\tau$ = 128MB. 500 disks are set up by default. The $T_i$ of the disk in the cluster is between 10ms and 500ms. 
-\begin{figure*}[!t]
-	\centering
-	\subfigure[Results under varilous setting on Workloads ]{\label{Fig:completeWorkload}\includegraphics[height=1.6in]{figcomplete1_5.eps}}\quad\quad %quad 表示图像的间距
-	\subfigure[Results under different Heterogeneity cluter. ]{\label{Fig:completeHeter}\includegraphics[height=1.6in]{figcomplete2_5.eps}}\quad\quad
-	\subfigure[Results under varilous setting on reolicas number
-	]{\label{Fig:completeRep}\includegraphics[height=1.6in]{figcomplete3_5.eps}}
-	\vspace{-1ex}
-	\caption{Comparison of WASH-rdm and other Algorithm on different workloads, different heterogenelity cluter and different replica number $C$. \ref{Fig:completeWorkload} denotes effect of different workloads on reading time. \ref{Fig:completeHeter} denotes the reading time of the three algorithm on different Heterogeneity cluter. \ref{Fig:completeRep} denotes the reading time of the three algorithm when $C$ is different. Y-axis denotes the reading time of all tasks which has been normalized.}
-	\label{Fig:complete}
-	\vspace{-3ex}
-\end{figure*}
+In traditional distributed file systems, e.g., \cite{b19}, data is distributed uniformly on disk. Therefore, in this experimental environment, we uniformly deploy 200000 data with three data replicas by default, each data block size $\tau$ = 128MB. 500 disks are set up by default. The $T_i$ of the disk in the cluster is between 10ms and 500ms, uniformly. 
+
+
 
 \subsection{Simulation Results}
 
-For convenience of display, Fig.\ref{Fig:instance}. shows the results under different workloads upon 50 disks. X-axis denotes the disks. Y-axis denotes the load of each disk after running the three algorithms. The lower the peak of the curve, the better the result. The black dotted line represents the execution result of Algorithm WASH-greedy, and the green line represents the execution result of Algorithm WASH-rdm. Overall, we can see that our algorithm performs better than Hadoop-default. As shown in Fig.\ref{Fig:instance1}, in the small workload, the result of Hadoop-default has large fluctuations. This is a result of that hadoop-default is not aware of the $T_i$ and load of the disk when selecting a replica for the task. Even if the tasks are deployed uniformly on disks, the disk with low performance may have a relatively large load. In Fig. \ref{Fig:instance1}, low performance disks will have high peaks. Completion of all parallel tasks is the end of the big data processing job. Therefore, the task reading data from the disk with poor performance will be the bottleneck of data processing job. For example, Hadoop-default causes the tasks of reading data from disk-2 to be the bottleneck of big data processing in the Fig.\ref{Fig:instance1} which is 654. Algorithms WASH-greedy and WASH-rdm can maintain roughly all disks at a lower load, less than 300. The reason is that WASH-greedy can select the disk to read for the task according to load of the disks and WASH-rdm can select the disk to read for the task according to load of the disks the performance of the disk. The maximum load of WASH-greedy algorithm is 261 in disk-12. Compared with the Hadoop-default, the performance is improved by 64\%. The maximum load of WASH-rdm algorithm is disk-4, and the corresponding load is 284. Compared with the baseline algorithm, the performance of WASH-rdm algorithm improves 57\%.
-As the number of tasks increases, the load on all disks increases. For example, in Fig.\ref{Fig:instance2}, when the number of tasks is about 2000, in Hadoop-default algorithm the maximum load is 2009 in disk-9. The results of WASH-greedy and WASH-rdm are that 784 in disk-8  and 770 in disk-6, respectively. The performance of our algorithm improves by 61\% and 62\%. 
-When the number of tasks becomes larger, in the large Workloads of Fig. \ref{Fig:instance3}, the maximum load obtained by the three algorithms are 5546,2205 and 2646. WASH-greedy increases by 60\% and WASH-rdm performance improves by 52\%.
- 
-Next, we study the impact of different factors workloads, degree of heterogeneity and the number of data replicas, on the load upon the default configuration. In Fig.\ref{Fig:completeWorkload}, the horizontal X-axis represents different workloads, and the Y-axis represents the maximum load in the cluster, which has been normalized. In the previous part, impact of Workloads is that the overall load on disk shows an increasing trend as the Workloads gets larger. Fig.\ref{Fig:completeWorkload} shows the difference among the three workloads. The performance of our proposed algorithm can always be improved by 60\% on average. Next, we observed the effect of degree of heterogeneity on the load. We divide the heterogeneity of the cluster into two kinds. One is that the $T_i$ of disks is evenly distributed between 10ms and 100ms, named Low Heterogeneous Cluster. Another is High Heterogeneous Cluster, where the $T_i$ of disks are evenly distributed between 10ms and 500ms. Other conditions are configured by default. From Fig.\ref{Fig:completeHeter}, when the degree of heterogeneity gets larger, the overall load shows an increasing trend. This is because the large the degree of heterogeneity, the greater the performance difference between disks. This leads to hard balancing of disk loads. Through \ref{Fig:completeHeter}, we find that our algorithm can also improve the performance of 40-50\% in clusters with high heterogeneity. Finally, we analyze the impact of the amount of data replicas on disk load. We set the number of data replicas as 2, 3 and 5. Observe that the higher the number of replicas, the lower the disk load. Reason for it is that with the number of data replicas increasing, the probability of data being deployed on high performance disks increases. Selecting data on high-performance disks at this time will greatly accelerate the completion of tasks. When $C$ = 5, our algorithm can achieve 65\% performance improvement.
+\textbf{Distribution of reading time for each disk.} For convenience of display, Fig.\ref{Fig:instance} shows the results under different workloads upon 50 disks. X-axis represents the different disks. Y-axis represents the reading time of each disk by adopting the scheduling of the three algorithms. The lower peak curve has, the better performance the tasks have. The black dotted line represents the scheduling result of WASH-greedy, and the green line represents the scheduling result of Algorithm WASH-rdm. Overall, we can see that our proposed WASH-rdm performs much better than Hadoop-default. As shown in Fig.\ref{Fig:instance1}, i.e., the small workload, the result of Hadoop-default has large fluctuations. This is a result of that scheduling of hadoop-default is not aware of the types and workloads of the disks when selecting a source device for a task. Even if the number of tasks that read data on disks are uniformly, the low-performances disks might have a relatively heavy use. As shown in Fig. \ref{Fig:instance1}, disks with low-performance will have high peaks. 
+
+Due to the completion of a job depending on the straggler task, the tasks reading data from the disks with poor performance could be the bottleneck of data analytical tasks. For example, in Hadoop-default, tasks reading data from disk-6, are the bottleneck of data analytics in the Fig.\ref{Fig:instance1} which is 756. WASH-greedy and WASH-rdm could keep the reading time of disks roughly at a lower load, less than 450. The reason is that WASH-greedy can select the disk to read for the task according to performance of the disks where the maximum reading time of disks is 405.0 in disk-32. While WASH-rdm selects the source devices chooses source devices based on delicate calculated probabilities with peak 243.6 in disk-17. 
+Compared with the Hadoop-default and WASH-greedy, our proposed WASH-rdm reduces reading time for tasks by up 67\% and 40\%, respectively.   
+
+As the the number of tasks increasing, the reading time of each disk in data center also increases. Such as in Fig.\ref{Fig:instance2}, when the number of tasks is about 2000, in Hadoop-default and WASH-greedy the maximum reading time among the disks is 2244 in disk-9 and 1495.0 in disk-22, respectively. While the maximum reading time of our proposed WASH-rdm is 1116 in disk-45, which speed up data analytics by up 51\% and 23\%, respectively. 
+Furthermore, as shown in Fig.\ref{Fig:instance3}, i.e., Large Workload,  When the number of tasks becomes larger, in the large Workloads of Fig.\ref{Fig:instance3}, our proposed WASH-rdm could reduces reading time for tasks by up 57\% and 35\% over Hadoop-default and WASH-greedy, respectively. 
+
+
+ %5546, 3650 and 2346
+
+\textbf{Comparison of reading time under different factors.} Next, we focus on the impact of different factors, i.e., workloads, degree of heterogeneity and the number of data replicas, on the reading time of tasks upon the default configuration. In Fig.\ref{Fig:completeWorkload}, the horizontal X-axis represents different workloads, and the Y-axis represents the maximum reading time among disks in the cluster, which has been normalized. In the previous part, the reading time of each disk show increasing trend with the workloads gets larger. 
+Fig.\ref{Fig:completeWorkload} shows the difference among the three workloads. The performance of our proposed HTS-rdm can always be improved by 55\% on average, over Hadoop-default. Next, we observed the effect of degree of heterogeneity on the load. We divide the heterogeneity of the cluster into two kinds. One is that the $T_i$ of disks is evenly distributed between 10ms and 100ms, named Low Heterogeneous Cluster. Another is High Heterogeneous Cluster, where the $T_i$ of disks are evenly distributed between 10ms and 500ms. Other conditions are configured by default. From Fig.\ref{Fig:completeHeter}, when the degree of heterogeneity gets larger, the overall load shows an increasing trend. This is because the large the degree of heterogeneity, the greater the performance difference between disks. This leads to hard balancing of disk loads. Through \ref{Fig:completeHeter}, we find that our algorithm can also improve the performance of 40-50\% in clusters with high heterogeneity. Finally, we analyze the impact of the amount of data replicas on disk load. We set the number of data replicas as 2, 3 and 5. Observe that the higher the number of replicas, the lower the disk load. Reason for it is that with the number of data replicas increasing, the probability of data being deployed on high performance disks increases. Selecting data on high-performance disks at this time will greatly accelerate the completion of tasks. When $C$ = 5, our algorithm can achieve 65\% performance improvement.
  
  All in all,  the performance of the two algorithms proposed by us has reached an average of 55\% improvement over baseline algorithm on average under different conditions.
 
@@ -628,6 +640,8 @@ As a result of that WASH-sp is a special case in WASH, WASH problem is NP-hard.\
 \bibitem{b41}Dean J, Ghemawat S. MapReduce: simplified data processing on large clusters[J]. Communications of the ACM, 2008, 51(1): 107-113.
 
 \bibitem{b42}Davidson A, Or A. Optimizing shuffle performance in spark[J]. University of California, Berkeley-Department of Electrical Engineering and Computer Sciences, Tech. Rep, 2013.
+
+\bibitem{b43}Islam N S, Lu X, Wasi-ur-Rahman M, et al. Triple-H: A hybrid approach to accelerate HDFS on HPC clusters with heterogeneous storage architecture[C]//2015 15th IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing. IEEE, 2015: 101-110.
 \end{thebibliography}
 \end{document}
 

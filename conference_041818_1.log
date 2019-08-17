@@ -1,7 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=latex 2018.7.11)  16 AUG 2019 23:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.11)  17 AUG 2019 21:49
 entering extended mode
  restricted \write18 enabled.
- Source specials enabled.
  %&-line parsing enabled.
 **conference_041818_1.tex
 (./conference_041818_1.tex
@@ -24,7 +23,7 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 503.
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 -- Using 8.5in x 11in (letter) paper.
--- Using DVI output.
+-- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen105
 -- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen106
@@ -227,10 +226,10 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (c:/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: dvips.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(c:/texlive/2018/texmf-dist/tex/latex/graphics-def/dvips.def
-File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
+(c:/texlive/2018/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen135
 \Gin@req@width=\dimen136
@@ -398,8 +397,9 @@ Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 (c:/texlive/2018/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: dvips.def on input line 225.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
@@ -481,13 +481,20 @@ Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package pdftexcmds Info: \pdfdraftmode found.
 )
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
 
-Package epstopdf Warning: Drivers other than `pdftex' and `luatex' are not supp
-orted.
-
-)) (c:/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.sty
+(c:/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(c:/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip53
 \subfigcapskip=\skip54
@@ -522,11 +529,11 @@ Package: pict2e 2016/02/05 v0.3b Improved picture commands (HjG,RN,JT)
 (c:/texlive/2018/texmf-dist/tex/latex/pict2e/pict2e.cfg
 File: pict2e.cfg 2016/02/05 v0.1u pict2e configuration for teTeX/TeXLive
 )
-Package pict2e Info: Driver file: dvips.def on input line 119.
-Package pict2e Info: Driver file for pict2e: p2e-dvips.def on input line 121.
+Package pict2e Info: Driver file: pdftex.def on input line 119.
+Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 121.
 
-(c:/texlive/2018/texmf-dist/tex/latex/pict2e/p2e-dvips.def
-File: p2e-dvips.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
+(c:/texlive/2018/texmf-dist/tex/latex/pict2e/p2e-pdftex.def
+File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
 \pIIe@GRAPH=\toks32
 \@arclen=\dimen139
@@ -638,111 +645,271 @@ File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 22.
 
 -- Lines per column: 56 (exact).
+(c:/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count134
+\scratchdimen=\dimen152
+\scratchbox=\box37
+\nofMPsegments=\count135
+\nofMParguments=\count136
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count137
+\MPscratchDim=\dimen153
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
+\everyMPtoPDFconversion=\toks35
+)
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 32.
-(c:/texlive/2018/texmf-dist/tex/latex/psnfss/omsptm.fd
+ (c:/texlive/2018/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
 
 Underfull \hbox (badness 4254) in paragraph at lines 39--41
-[][]\OT1/ptm/b/it/9 Index Terms\OT1/ptm/b/n/9 ---big data an-a-lyt-ics, heterog
-eneous-storage,
+[]\OT1/ptm/b/it/9 Index Terms\OT1/ptm/b/n/9 ---big data an-a-lyt-ics, heterogen
+eous-storage,
  []
 
-File: fig_motivation5.eps Graphic file (type eps)
-<fig_motivation5.eps>
-Overfull \hbox (2.20654pt too wide) in paragraph at lines 54--55
- [][][] 
+Package epstopdf Info: Source file: <fig_motivation5.eps>
+(epstopdf)                    date: 2019-08-15 20:13:28
+(epstopdf)                    size: 262571 bytes
+(epstopdf)             Output file: <fig_motivation5-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:28
+(epstopdf)                    size: 24208 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig_motivation5-eps-conver
+ted-to.pdf fig_motivation5.eps>
+(epstopdf)             \includegraphics on input line 54.
+Package epstopdf Info: Output file is already uptodate.
+<fig_motivation5-eps-converted-to.pdf, id=1, 341.275pt x 174.6525pt>
+File: fig_motivation5-eps-converted-to.pdf Graphic file (type pdf)
+<use fig_motivation5-eps-converted-to.pdf>
+Package pdftex.def Info: fig_motivation5-eps-converted-to.pdf  used on input li
+ne 54.
+(pdftex.def)             Requested size: 254.20592pt x 130.08621pt.
+
+Overfull \hbox (2.20592pt too wide) in paragraph at lines 54--55
+ [][] 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 68.
+LaTeX Font Info:    Try loading font information for U+msa on input line 69.
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 68.
+LaTeX Font Info:    Try loading font information for U+msb on input line 69.
 
 (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 1515) in paragraph at lines 69--70
-[][]\OT1/ptm/m/n/10 We pro-pose ran-dom-ized al-go-rithm with guaranteed-
+Underfull \hbox (badness 1515) in paragraph at lines 70--71
+[]\OT1/ptm/m/n/10 We pro-pose ran-dom-ized al-go-rithm with guaranteed-
  []
 
-[1
+[1{c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-] [2]
-File: fig_example1_4.eps Graphic file (type eps)
- <fig_example1_4.eps>
+ <./fig_motivation5-eps-converted-to.pdf>] [2]
+Package epstopdf Info: Source file: <fig_example1_4.eps>
+(epstopdf)                    date: 2019-08-16 09:12:17
+(epstopdf)                    size: 1006868 bytes
+(epstopdf)             Output file: <fig_example1_4-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:31
+(epstopdf)                    size: 54949 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig_example1_4-eps-convert
+ed-to.pdf fig_example1_4.eps>
+(epstopdf)             \includegraphics on input line 129.
+Package epstopdf Info: Output file is already uptodate.
+<fig_example1_4-eps-converted-to.pdf, id=27, 383.4325pt x 225.84375pt>
+File: fig_example1_4-eps-converted-to.pdf Graphic file (type pdf)
+<use fig_example1_4-eps-converted-to.pdf>
+Package pdftex.def Info: fig_example1_4-eps-converted-to.pdf  used on input lin
+e 129.
+(pdftex.def)             Requested size: 136.00414pt x 80.10788pt.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 130.
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--132
-
- []
-
-File: fig_example2_3.eps Graphic file (type eps)
-<fig_example2_3.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 134--138
+Underfull \hbox (badness 10000) in paragraph at lines 129--133
 
  []
 
+Package epstopdf Info: Source file: <fig_example2_3.eps>
+(epstopdf)                    date: 2019-08-16 09:12:31
+(epstopdf)                    size: 762214 bytes
+(epstopdf)             Output file: <fig_example2_3-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:33
+(epstopdf)                    size: 105794 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig_example2_3-eps-convert
+ed-to.pdf fig_example2_3.eps>
+(epstopdf)             \includegraphics on input line 135.
+Package epstopdf Info: Output file is already uptodate.
+<fig_example2_3-eps-converted-to.pdf, id=28, 307.1475pt x 225.84375pt>
+File: fig_example2_3-eps-converted-to.pdf Graphic file (type pdf)
+<use fig_example2_3-eps-converted-to.pdf>
+Package pdftex.def Info: fig_example2_3-eps-converted-to.pdf  used on input lin
+e 135.
+(pdftex.def)             Requested size: 112.38829pt x 82.63731pt.
 
-Overfull \hbox (3.51276pt too wide) in paragraph at lines 179--205
- [][][] 
+Underfull \hbox (badness 10000) in paragraph at lines 135--139
+
  []
 
-[3]
-File: fig1_9.eps Graphic file (type eps)
- <fig1_9.eps>
-File: fig2_2.eps Graphic file (type eps)
- <fig2_2.eps> [4]
-File: fig_instance1_4.eps Graphic file (type eps)
- <fig_instance1_4.eps>
-File: fig_instance2_4.eps Graphic file (type eps)
- <fig_instance2_4.eps>
-File: fig_instance3_4.eps Graphic file (type eps)
 
-<fig_instance3_4.eps>
-Overfull \hbox (8.72449pt too wide) detected at line 404
+Overfull \hbox (3.51276pt too wide) in paragraph at lines 180--206
+ [][] 
+ []
+
+[3 <./fig_example1_4-eps-converted-to.pdf> <./fig_example2_3-eps-converted-to.p
+df>]
+Package epstopdf Info: Source file: <fig1_9.eps>
+(epstopdf)                    date: 2019-08-16 16:58:13
+(epstopdf)                    size: 2135080 bytes
+(epstopdf)             Output file: <fig1_9-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:36
+(epstopdf)                    size: 255130 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig1_9-eps-converted-to.pd
+f fig1_9.eps>
+(epstopdf)             \includegraphics on input line 291.
+Package epstopdf Info: Output file is already uptodate.
+<fig1_9-eps-converted-to.pdf, id=138, 673.51625pt x 172.645pt>
+File: fig1_9-eps-converted-to.pdf Graphic file (type pdf)
+<use fig1_9-eps-converted-to.pdf>
+Package pdftex.def Info: fig1_9-eps-converted-to.pdf  used on input line 291.
+(pdftex.def)             Requested size: 225.54968pt x 57.81621pt.
+Package epstopdf Info: Source file: <fig2_2.eps>
+(epstopdf)                    date: 2019-08-16 17:01:22
+(epstopdf)                    size: 2163043 bytes
+(epstopdf)             Output file: <fig2_2-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:38
+(epstopdf)                    size: 225612 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig2_2-eps-converted-to.pd
+f fig2_2.eps>
+(epstopdf)             \includegraphics on input line 297.
+Package epstopdf Info: Output file is already uptodate.
+<fig2_2-eps-converted-to.pdf, id=139, 644.4075pt x 151.56625pt>
+File: fig2_2-eps-converted-to.pdf Graphic file (type pdf)
+<use fig2_2-eps-converted-to.pdf>
+Package pdftex.def Info: fig2_2-eps-converted-to.pdf  used on input line 297.
+(pdftex.def)             Requested size: 245.81151pt x 57.81621pt.
+ [4 <./fig1_9-eps-converted-to.pdf> <./fig2_2-eps-converted-to.pdf>]
+Overfull \hbox (8.72449pt too wide) detected at line 394
 []
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 460--461
-[][]\OT1/ptm/m/n/10 Observed from the (19[]), the fea-si-ble so-lu-tion
+Package epstopdf Info: Source file: <fig_instance1_6.eps>
+(epstopdf)                    date: 2019-08-17 11:35:23
+(epstopdf)                    size: 245390 bytes
+(epstopdf)             Output file: <fig_instance1_6-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:40
+(epstopdf)                    size: 22110 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig_instance1_6-eps-conver
+ted-to.pdf fig_instance1_6.eps>
+(epstopdf)             \includegraphics on input line 462.
+Package epstopdf Info: Output file is already uptodate.
+<fig_instance1_6-eps-converted-to.pdf, id=715, 423.5825pt x 319.1925pt>
+File: fig_instance1_6-eps-converted-to.pdf Graphic file (type pdf)
+<use fig_instance1_6-eps-converted-to.pdf>
+Package pdftex.def Info: fig_instance1_6-eps-converted-to.pdf  used on input li
+ne 462.
+(pdftex.def)             Requested size: 153.44615pt x 115.63243pt.
+Package epstopdf Info: Source file: <fig_instance2_6.eps>
+(epstopdf)                    date: 2019-08-17 11:35:34
+(epstopdf)                    size: 238007 bytes
+(epstopdf)             Output file: <fig_instance2_6-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:43
+(epstopdf)                    size: 19808 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig_instance2_6-eps-conver
+ted-to.pdf fig_instance2_6.eps>
+(epstopdf)             \includegraphics on input line 463.
+Package epstopdf Info: Output file is already uptodate.
+<fig_instance2_6-eps-converted-to.pdf, id=716, 433.62pt x 319.1925pt>
+File: fig_instance2_6-eps-converted-to.pdf Graphic file (type pdf)
+<use fig_instance2_6-eps-converted-to.pdf>
+Package pdftex.def Info: fig_instance2_6-eps-converted-to.pdf  used on input li
+ne 463.
+(pdftex.def)             Requested size: 157.08232pt x 115.63243pt.
+Package epstopdf Info: Source file: <fig_instance3_6.eps>
+(epstopdf)                    date: 2019-08-17 11:35:11
+(epstopdf)                    size: 246032 bytes
+(epstopdf)             Output file: <fig_instance3_6-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:45
+(epstopdf)                    size: 22107 bytes
+(epstopdf)             Command: <repstopdf --outfile=fig_instance3_6-eps-conver
+ted-to.pdf fig_instance3_6.eps>
+(epstopdf)             \includegraphics on input line 465.
+Package epstopdf Info: Output file is already uptodate.
+<fig_instance3_6-eps-converted-to.pdf, id=717, 433.62pt x 321.2pt>
+File: fig_instance3_6-eps-converted-to.pdf Graphic file (type pdf)
+<use fig_instance3_6-eps-converted-to.pdf>
+Package pdftex.def Info: fig_instance3_6-eps-converted-to.pdf  used on input li
+ne 465.
+(pdftex.def)             Requested size: 156.10307pt x 115.63243pt.
+Package epstopdf Info: Source file: <figcomplete1_5.eps>
+(epstopdf)                    date: 2019-08-16 10:39:03
+(epstopdf)                    size: 266861 bytes
+(epstopdf)             Output file: <figcomplete1_5-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:47
+(epstopdf)                    size: 26973 bytes
+(epstopdf)             Command: <repstopdf --outfile=figcomplete1_5-eps-convert
+ed-to.pdf figcomplete1_5.eps>
+(epstopdf)             \includegraphics on input line 474.
+Package epstopdf Info: Output file is already uptodate.
+<figcomplete1_5-eps-converted-to.pdf, id=718, 455.7025pt x 339.2675pt>
+File: figcomplete1_5-eps-converted-to.pdf Graphic file (type pdf)
+<use figcomplete1_5-eps-converted-to.pdf>
+Package pdftex.def Info: figcomplete1_5-eps-converted-to.pdf  used on input lin
+e 474.
+(pdftex.def)             Requested size: 155.31227pt x 115.63243pt.
+Package epstopdf Info: Source file: <figcomplete2_5.eps>
+(epstopdf)                    date: 2019-08-17 14:58:41
+(epstopdf)                    size: 275195 bytes
+(epstopdf)             Output file: <figcomplete2_5-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:49
+(epstopdf)                    size: 29922 bytes
+(epstopdf)             Command: <repstopdf --outfile=figcomplete2_5-eps-convert
+ed-to.pdf figcomplete2_5.eps>
+(epstopdf)             \includegraphics on input line 475.
+Package epstopdf Info: Output file is already uptodate.
+<figcomplete2_5-eps-converted-to.pdf, id=719, 449.68pt x 339.2675pt>
+File: figcomplete2_5-eps-converted-to.pdf Graphic file (type pdf)
+<use figcomplete2_5-eps-converted-to.pdf>
+Package pdftex.def Info: figcomplete2_5-eps-converted-to.pdf  used on input lin
+e 475.
+(pdftex.def)             Requested size: 153.25969pt x 115.63243pt.
+Package epstopdf Info: Source file: <figcomplete3_5.eps>
+(epstopdf)                    date: 2019-08-16 10:38:39
+(epstopdf)                    size: 255214 bytes
+(epstopdf)             Output file: <figcomplete3_5-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-08-17 20:42:52
+(epstopdf)                    size: 23611 bytes
+(epstopdf)             Command: <repstopdf --outfile=figcomplete3_5-eps-convert
+ed-to.pdf figcomplete3_5.eps>
+(epstopdf)             \includegraphics on input line 477.
+Package epstopdf Info: Output file is already uptodate.
+<figcomplete3_5-eps-converted-to.pdf, id=720, 455.7025pt x 339.2675pt>
+File: figcomplete3_5-eps-converted-to.pdf Graphic file (type pdf)
+<use figcomplete3_5-eps-converted-to.pdf>
+Package pdftex.def Info: figcomplete3_5-eps-converted-to.pdf  used on input lin
+e 477.
+(pdftex.def)             Requested size: 155.31227pt x 115.63243pt.
+ [6] [7 <./fig_instance1_6-eps-converted-to.pdf> <./fig_instance2_6-eps-convert
+ed-to.pdf> <./fig_instance3_6-eps-converted-to.pdf> <./figcomplete1_5-eps-conve
+rted-to.pdf> <./figcomplete2_5-eps-converted-to.pdf> <./figcomplete3_5-eps-conv
+erted-to.pdf>] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
+[]\OT1/ptm/m/n/8 2019. Mar-tin-gale (prob-a-bil-ity the-ory).
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 460--461
-\OT1/ptm/m/n/10 so-lu-tion OPT (WASH) are ap-prox-i-mated by prob-a-bil-ity
- []
-
-File: figcomplete1_5.eps Graphic file (type eps)
-<figcomplete1_5.eps>
-File: figcomplete2_5.eps Graphic file (type eps)
- <figcomplete2_5.eps>
-Underfull \hbox (badness 7064) in paragraph at lines 493--493
-[][]\OT1/ptm/m/n/8 (b) Re-sults un-der dif-fer-ent Het-ero-gene-ity
- []
-
-File: figcomplete3_5.eps Graphic file (type eps)
-<figcomplete3_5.eps> [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 595--596
-[][]\OT1/ptm/m/n/8 2019. Mar-tin-gale (prob-a-bil-ity the-ory).
- []
-
-[8]
-Overfull \hbox (4.26947pt too wide) in paragraph at lines 603--604
-[][]\OT1/ptm/m/n/8 2012. Google Clus-ter Trace. https://code.google.com/p/googl
-eclusterdata/. 
+Overfull \hbox (4.26947pt too wide) in paragraph at lines 615--616
+[]\OT1/ptm/m/n/8 2012. Google Clus-ter Trace. https://code.google.com/p/googlec
+lusterdata/. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--611
-[][]\OT1/ptm/m/n/8 Kong J. Dat-a-cen-ter stor-age sys-tem: U.S. Patent Ap-pli-c
-a-tion
+Underfull \hbox (badness 10000) in paragraph at lines 622--623
+[]\OT1/ptm/m/n/8 Kong J. Dat-a-cen-ter stor-age sys-tem: U.S. Patent Ap-pli-ca-
+tion
  []
 
 
@@ -758,15 +925,37 @@ Before submitting the final camera ready copy, remember to:
 
 [9
 
-] (./conference_041818_1.aux) )
-(\end occurred when \ifx on line 161 was incomplete) 
+] (./conference_041818_1.aux) ) 
 Here is how much of TeX's memory you used:
- 5838 strings out of 492650
- 81572 string characters out of 6133410
- 185159 words of memory out of 5000000
- 9579 multiletter control sequences out of 15000+600000
- 31308 words of font info for 77 fonts, out of 8000000 for 9000
+ 6286 strings out of 492649
+ 88850 string characters out of 6133384
+ 189614 words of memory out of 5000000
+ 10007 multiletter control sequences out of 15000+600000
+ 43318 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,16n,35p,2003b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,16n,35p,1557b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2018/texmf-dist/fonts/enc/dvips/base
+/8r.enc}<c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texliv
+e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2018/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2018/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr5.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:
+/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/20
+18/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2018/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2018/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/pub
+lic/amsfonts/symbols/msbm10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/
+amsfonts/symbols/msbm7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/ut
+mb8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texl
+ive/2018/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2018/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on conference_041818_1.pdf (9 pages, 942090 bytes).
+PDF statistics:
+ 844 PDF objects out of 1000 (max. 8388607)
+ 652 compressed objects within 7 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on conference_041818_1.dvi (9 pages, 76888 bytes).

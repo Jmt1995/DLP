@@ -3,7 +3,7 @@ Workload-Aware Scheduling for Heterogeneous Storage Data Analytics
 
 the unbalanced use on either specific type of storage or particular device would easily elongate the latency on reading data, worsening the overall performance for analytical tasks
 
- we propose a randomized algorithm (WASH-rdm) which can be proved concentrated on its optimum value with high probability through our theoretical analysis. 
+ we propose a randomized algorithm (WASH-rdm) which can be proved concentrated on its optimum with high probability through our theoretical analysis. 
 
 Workload-Aware Scheduling problem for Heterogeneous-storage (WASH)
 as well as
@@ -20,6 +20,8 @@ Workload-Aware Scheduling problem for Heterogeneous Storage (WASH)
 
 in big data analytics frameworks
 
-rely ... on ...
+rely ... on .c..
+
+choose feasible location
 
 disks with poor read performance or heavy workload would elongate the I/O performance of analytical tasks.
